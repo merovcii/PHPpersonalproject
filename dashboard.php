@@ -182,9 +182,8 @@
     } ?>
     
       <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
-        <h2>Movies</h2>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovieModal">
-          Add New Movie
+          Add New Product
         </button>
       </div>
       <div class="table-responsive">
@@ -192,11 +191,10 @@
           <thead>
             <tr>
               <th scope="col">Id</th>
-              <th scope="col">Movie Name</th>
+              <th scope="col">Products Name</th>
               <th scope="col">Description</th>
               <th scope="col">Quality</th>
               <th scope="col">Rating</th>
-              <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -223,7 +221,7 @@
                   <?php }
             } else { ?>
                 <tr>
-                    <td colspan="6" class="text-center">You must be an admin to view movies</td>
+                    <td colspan="6" class="text-center">You must be an admin to view products</td>
                 </tr>
             <?php } ?>
           </tbody>

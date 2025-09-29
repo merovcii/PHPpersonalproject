@@ -27,23 +27,30 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(255) NOT NULL,
-  `emri` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) NOT NULL,
-  `is_admin` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- CREATE TABLE `users` (
+--   `id` int(255) NOT NULL,
+--   `emri` varchar(255) NOT NULL,
+--   `username` varchar(255) NOT NULL,
+--   `email` varchar(255) NOT NULL,
+--   `password` varchar(255) NOT NULL,
+--   `confirm_password` varchar(255) NOT NULL,
+--   `is_admin` varchar(255) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
---
+CREATE TABLE `products` (
+  `id` int(255) NOT NULL,
+  `Products_name` varchar(255) NOT NULL,
+  `products_desc` varchar(255) NOT NULL,
+  `products_quality` varchar(255) NOT NULL,
+  `products_rating` int(255) NOT NULL,
+  `products_image` varchar(255) NOT NULL
+)
 
-INSERT INTO `users` (`id`, `emri`, `username`, `email`, `password`, `confirm_password`, `is_admin`) VALUES
-(0, 'trimi', 'trimi12', 'trimi@gmail.com', '$2y$10$IxZvan1zeC9ylyB/HhCsS.uM7Vw5/TRc7lyWYDmzqGUjJLPMDEaPa', '$2y$10$guYNHdMuy9kHjuNCLY3W2u/xh1BE9H7uKOggOncT/ITMpfEuIpLJq', '');
-COMMIT;
+-- INSERT INTO `users` (`id`, `emri`, `username`, `email`, `password`, `confirm_password`, `is_admin`) VALUES
+-- (0, 'trimi', 'trimi12', 'trimi@gmail.com', '$2y$10$IxZvan1zeC9ylyB/HhCsS.uM7Vw5/TRc7lyWYDmzqGUjJLPMDEaPa', '$2y$10$guYNHdMuy9kHjuNCLY3W2u/xh1BE9H7uKOggOncT/ITMpfEuIpLJq', '');
+-- COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
