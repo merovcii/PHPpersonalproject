@@ -19,16 +19,16 @@
     $users_data = $selectUsers->fetchAll();
     
     // Fetch movies
-    $sql_movies = "SELECT * FROM movies";
-    $selectMovies = $conn->prepare($sql_movies);
+    $sql_products = "SELECT * FROM products";
+    $selectproducts = $conn->prepare($sql_products);
     
     try {
         // Try to run the query
-        $selectMovies->execute();
-        $movies_data = $selectMovies->fetchAll(PDO::FETCH_ASSOC);
+        $selectproducts->execute();
+        $products_data = $selectproducts->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         // Set empty array if error
-        $movies_data = [];
+        $products_data = [];
     }
 
 
@@ -91,12 +91,7 @@
               Movies
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <span ></span>
-              Bookings
-            </a>
-          </li>
+        
         </ul>
         <?php }else {?>
           <li class="nav-item">
@@ -105,12 +100,6 @@
                 Home
               </a>
             </li>
-          <li class="nav-item">
-          <a class="nav-link" href="bookings.php">
-            <span ></span>
-            Bookings
-          </a>
-        </li>
         </ul>
       <?php
       } ?>
