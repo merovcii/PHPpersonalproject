@@ -88,7 +88,7 @@
           <li class="nav-item">
             <a class="nav-link" href="list_movies.php">
               <span data-feather="file"></span>
-              Movies
+              Products
             </a>
           </li>
         
@@ -195,17 +195,17 @@
                   if (count($movies_data) > 0) {
                       foreach ($movies_data as $movie) { ?>
                          <tr>
-                          <td><?php echo $movie['id']; ?></td>
-                          <td><?php echo $movie['movie_name']; ?></td>
-                          <td><?php echo substr($movie['movie_desc'], 0, 50) . '...'; ?></td>
-                          <td><?php echo $movie['movie_quality']; ?></td>
-                          <td><?php echo $movie['movie_rating']; ?></td>
-                          <td><a href="delete_movie.php?id=<?= $movie['id'];?>" class="text-danger" onclick="return confirm('Are you sure you want to delete this movie?');">Delete</a></td>
+                          <td><?php echo $products['id']; ?></td>
+                          <td><?php echo $products['products_name']; ?></td>
+                          <td><?php echo $products($movie['products_desc'], 0, 50) . '...'; ?></td>
+                          <td><?php echo $products['products_quality']; ?></td>
+                          <td><?php echo $products['products_rating']; ?></td>
+                          <td><a href="delete_products.php?id=<?= $products['id'];?>" class="text-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a></td>
                         </tr>
                   <?php }
                   } else { ?>
                       <tr>
-                          <td colspan="6" class="text-center">No movies found</td>
+                          <td colspan="6" class="text-center">No products found</td>
                       </tr>
                   <?php }
             } else { ?>
@@ -225,13 +225,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addMovieModalLabel">Add New Movie</h5>
+          <h5 class="modal-title" id="addMovieModalLabel">Add New product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form action="addMovie.php" method="post">
             <div class="mb-3">
-              <label for="movie_name" class="form-label">Movie Name</label>
+              <label for="movie_name" class="form-label">Product Name</label>
               <input type="text" class="form-control" id="movie_name" name="movie_name" required>
             </div>
             <div class="mb-3">

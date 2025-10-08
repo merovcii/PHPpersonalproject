@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` int(255) NOT NULL,
-  `Products_name` varchar(255) NOT NULL,
-  `products_desc` varchar(255) NOT NULL,
-  `products_quality` varchar(255) NOT NULL,
-  `products_rating` int(255) NOT NULL,
-  `products_image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- CREATE TABLE `products` (
+--   `id` int(255) NOT NULL,
+--   `Products_name` varchar(255) NOT NULL,
+--   `products_desc` varchar(255) NOT NULL,
+--   `products_quality` varchar(255) NOT NULL,
+--   `products_rating` int(255) NOT NULL,
+--   `products_image` varchar(255) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,15 +42,15 @@ CREATE TABLE `products` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(255) NOT NULL,
-  `emri` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) NOT NULL,
-  `is_admin` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- CREATE TABLE `users` (
+--   `id` int(255) NOT NULL,
+--   `emri` varchar(255) NOT NULL,
+--   `username` varchar(255) NOT NULL,
+--   `email` varchar(255) NOT NULL,
+--   `password` varchar(255) NOT NULL,
+--   `confirm_password` varchar(255) NOT NULL,
+--   `is_admin` varchar(255) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`

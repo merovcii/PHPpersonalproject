@@ -37,24 +37,7 @@
  <body>
 
  	<header>
-  <div class="collapse bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
@@ -71,50 +54,103 @@
  	<section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-   
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-      	<?php foreach ($products_data as $products_data) { ?>
-
-      	<div class="col">
-          <div class="card shadow-sm">
-
-            <img src="images/<?php echo  $products_data['products_images'];  ?>" height="350">
-
-            <div class="card-body">
-              <h4><?php echo  $products_data['products_name']; ?></h4>
-              <p class="card-text"><?php echo  $products_data['products_desc']; ?></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="details.php?id=<?php echo  $products_data['id']; ?>"  class="btn btn-sm btn-outline-secondary" >View</a>
-                  <a href="edit.php?id=<?php echo  $products_data['id']; ?>"  class="btn btn-sm btn-outline-secondary">Edit</a>
-                </div>
-                <small class="text-muted">Rating: <?php echo  $products_data['products_rating']; ?></small>
-                <small class="text-muted"><?php echo  $products_data['products_quality']; ?></small>
-              </div>
-            </div>
-          </div>
-        </div>
-      		
-      <?php	} ?>
-   
-       
-
-        
-      </div>
-    </div>
-  </div>
 
   
 
 
  </body>
  </html>
+ <style>
+
+   .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-title {
+      font-size: 1.1em;
+      margin: 0 0 10px;
+    }
+
+    .product-price {
+      color: #28a745;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Our Products</h1>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">White T-shirt</div>
+        <img src="images/product1.webp" alt="Product 1">
+        <div class="product-price">$19.99</div>
+      </div>
+    </div>
+    
+    <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">White shoes</div>
+        <img src="images/product2.webp" alt="Product 2">
+        <div class="product-price">$29.99</div>
+      </div>
+    </div>
+
+        <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">Black Hat</div>
+        <img src="images/product3.avif" alt="Product 3">
+        <div class="product-price">$15.99</div>
+      </div>
+    </div>
+
+
+        <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">Brown scarf for the winter</div>
+        <img src="images/product4.webp" alt="Product 2">
+        <div class="product-price">$9.99</div>
+      </div>
+    </div>
+
+
+        <div class="product-card">
+      <div class="product-info">
+        <div class="product-title">Hoodies</div>
+        <img src="images/product5.jpg" alt="Product 2">
+        <div class="product-price">$7.99</div>
+      </div>
+    </div>
+
+
+    <!-- Add more products here -->
+  </div>
+
+</body>
+</html>

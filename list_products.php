@@ -110,9 +110,9 @@
 
                <tr>
                 <td><?php echo $user_data['id']; ?></td>
-                <td><?php echo $user_data['movie_name']; ?></td>
-                <td><?php echo $user_data['movie_desc']; ?></td>
-                <td><?php echo $user_data['movie_quality']; ?></td>
+                <td><?php echo $user_data['products_name']; ?></td>
+                <td><?php echo $user_data['products_desc']; ?></td>
+                <td><?php echo $user_data['products_quality']; ?></td>
                 <!-- If we want to update a movie we created a link which will link us in edit.php file: -->
                 <td><a href="edit.php?id=<?= $user_data['id'];?>">Update</a></td>
                 <!-- If we want to Delete a movie we created a link which will link us in delete.php file -->
