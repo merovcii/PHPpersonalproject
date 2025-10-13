@@ -9,7 +9,7 @@
           header("Location: login.php");
     }
    
-    $sql = "SELECT * FROM movies";
+    $sql = "SELECT * FROM products";
     $selectUsers = $conn->prepare($sql);
     $selectUsers->execute();
 
@@ -71,7 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="list_movies.php">
+            <a class="nav-link" href="list_products.php">
               <span data-feather="file"></span>
               Products
             </a>
@@ -89,7 +89,7 @@
     <?php if ($_SESSION['is_admin'] == 'true') { ?>
 
       <h2>Products</h2>
-      <a href="movies.php" class="btn btn-primary">Add Product</a>
+      <a href="productss.php" class="btn btn-primary">Add Product</a>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
