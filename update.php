@@ -1,7 +1,5 @@
 <?php 
-/*
-We will get the changed data from edit.php file and update them into database
-*/
+
 	include_once('config.php');
 	
 

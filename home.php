@@ -1,8 +1,5 @@
 <?php 
- /*
-  We will include config.php for connection with database.
-  We will fetch all datas from movies in database and show them.
-  */
+
 	
    include_once('config.php');
 
@@ -104,52 +101,37 @@
 </head>
 <body>
 
-  <h1>Our Products</h1>
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="product-info">
-        <div class="product-title">White T-shirt</div>
-        <img src="images/product1.webp" alt="Product 1">
-        <div class="product-price">$19.99</div>
-      </div>
-    </div>
-    
-    <div class="product-card">
-      <div class="product-info">
-        <div class="product-title">White shoes</div>
-        <img src="images/product2.webp" alt="Product 2">
-        <div class="product-price">$29.99</div>
-      </div>
-    </div>
+ <div class="container">
 
-        <div class="product-card">
-      <div class="product-info">
-        <div class="product-title">Black Hat</div>
-        <img src="images/product3.avif" alt="Product 3">
-        <div class="product-price">$15.99</div>
-      </div>
-    </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+      	<?php foreach ($products_data as $products_data) { ?>
 
-        <div class="product-card">
-      <div class="product-info">
-        <div class="product-title">Brown scarf for the winter</div>
-        <img src="images/product4.webp" alt="Product 2">
-        <div class="product-price">$9.99</div>
-      </div>
-    </div>
+      	<div class="col">
+          <div class="card shadow-sm">
+
+            <img src="products_images/<?php echo $products_data['products_image'];  ?>" height="350">
+
+            <div class="card-body">
+              <h4><?php echo $products_data['products_name']; ?></h4>
+              <p class="card-text"><?php echo $products_data['products_desc']; ?></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="details.php?id=<?php echo $products_data['id']; ?>"  class="btn btn-sm btn-outline-secondary" >View</a>
+                  <a href="edit.php?id=<?php echo $products_data['id']; ?>"  class="btn btn-sm btn-outline-secondary">Edit</a>
+                </div>
+                <small class="text-muted">Rating: <?php echo $products_data['products_rating']; ?></small>
+                <small class="text-muted"><?php echo $products_data['products_quality']; ?></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      		
+      <?php	} ?>
+   
 
 
-        <div class="product-card">
-      <div class="product-info">
-        <div class="product-title">Hoodies</div>
-        <img src="images/product5.jpg" alt="Product 2">
-        <div class="product-price">$7.99</div>
-      </div>
-    </div>
 
-
-    <!-- Add more products here -->
   </div>
 
 </body>

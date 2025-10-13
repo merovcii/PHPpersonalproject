@@ -1,7 +1,5 @@
 <?php 
-/*Creating a session  based on a session identifier, passed via a GET or POST request.
-  Creating a form which users will use to give some movie data, then we will post those datas into addMovie.php file
-*/
+
 
   session_start();
 
@@ -84,7 +82,7 @@
 
     
 
-      <h2>Movies</h2>
+      <h2>products</h2>
 
        <form action="addproduct.php" method="post">
     

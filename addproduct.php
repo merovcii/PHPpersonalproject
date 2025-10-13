@@ -1,9 +1,9 @@
 <?php	
 
-//Including config.php file for connection with database 
+
 	include_once('config.php');
 
-//If the button Add Movie in movies.php is pressed, we will get datas that users added into the form, and insert them into database :
+
 	if(isset($_POST['submit']))
 	{
 
@@ -26,11 +26,11 @@
 
 		$insertProduct->execute();
 
-		// Set success message
+		
 		session_start();
 		$_SESSION['success_message'] = "Movie added successfully!";
 
-		// Redirect to dashboard
+		
 		header("Location: dashboard.php");
 		exit;
 	}

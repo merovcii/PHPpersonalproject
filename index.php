@@ -57,7 +57,7 @@
 	</style>
 </head>
 <body class="text-center">
-<!-- Creating a form which will post us some data in register.php file -->
+
 <main class="form-signin">
   <form action="register.php" method="post">
     <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">

@@ -1,8 +1,5 @@
 <?php 
- /*Creating a session  based on a session identifier, passed via a GET or POST request.
-  We will include config.php for connection with database.
-  We will fetch the data from database and show them, and create a form which will allow us to change the datas.
-  */
+
 	 session_start();
 
    include_once('config.php');

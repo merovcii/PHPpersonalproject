@@ -1,8 +1,5 @@
 <?php 
- /*Creating a session  based on a session identifier, passed via a GET or POST request.
-  We will include config.php for connection with database.
-  We will fetch all datas from movies in database and show them.
-  */
+
 
 	  session_start();
 
@@ -113,9 +110,9 @@
                 <td><?php echo $user_data['products_name']; ?></td>
                 <td><?php echo $user_data['products_desc']; ?></td>
                 <td><?php echo $user_data['products_quality']; ?></td>
-                <!-- If we want to update a movie we created a link which will link us in edit.php file: -->
+                
                 <td><a href="edit.php?id=<?= $user_data['id'];?>">Update</a></td>
-                <!-- If we want to Delete a movie we created a link which will link us in delete.php file -->
+               
                 <td><a href="delete.php?id=<?= $user_data['id'];?>">Delete</a></td>
               </tr>
               

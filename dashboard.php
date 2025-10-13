@@ -1,9 +1,5 @@
 <?php 
-/*Creating a session  based on a session identifier, passed via a GET or POST request.
-  We will include config.php for connection with database.
-  We will fetch all datas from users in database and show them.
-  If a user is admin, he can update or delete a user data.
-  */
+
 	  session_start();
 
     include_once('config.php');
@@ -12,22 +8,22 @@
           header("Location: login.php");
     }
    
-    // Fetch users
+
     $sql = "SELECT * FROM users";
     $selectUsers = $conn->prepare($sql);
     $selectUsers->execute();
     $users_data = $selectUsers->fetchAll();
     
-    // Fetch movies
+
     $sql_products = "SELECT * FROM products";
     $selectproducts = $conn->prepare($sql_products);
     
     try {
-        // Try to run the query
+        
         $selectproducts->execute();
         $products_data = $selectproducts->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        // Set empty array if error
+        
         $products_data = [];
     }
 
@@ -86,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="list_movies.php">
+            <a class="nav-link" href="list_products.php">
               <span data-feather="file"></span>
               Products
             </a>
@@ -113,7 +109,7 @@
         <h1 class="h2">Dashboard</h1>
       </div>
       
-      <!-- Display success message if exists -->
+      
       <?php if(isset($_SESSION['success_message'])): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <?php echo $_SESSION['success_message']; ?>
@@ -122,7 +118,7 @@
         <?php unset($_SESSION['success_message']); ?>
       <?php endif; ?>
       
-      <!-- Display error message if exists -->
+      
       <?php if(isset($_SESSION['error_message'])): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <?php echo $_SESSION['error_message']; ?>
@@ -142,12 +138,13 @@
               <th scope="col">Emri</th>
               <th scope="col">Username</th>
               <th scope="col">Email</th>
+              <th scope="col">password</th>
               <th scope="col">Update</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($users_data as $user_data) { ?>
+             <?php foreach ($users_data as $user_data) { ?>
 
                <tr>
                 <td><?php echo $user_data['id']; ?></td>
@@ -171,7 +168,7 @@
     } ?>
     
       <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMovieModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductsModal">
           Add New Product
         </button>
       </div>
@@ -188,18 +185,16 @@
           </thead>
           <tbody>
             <?php if ($_SESSION['is_admin'] == 'true') { 
-                  // Debug: Print the movies data as JSON for debugging
-                  echo "<!-- Debug: " . json_encode($movies_data) . " -->";
+                 
+                  echo "<!-- Debug: " . json_encode($products_data) . " -->";
                   
-                  // Loop through each movie
-                  if (count($movies_data) > 0) {
-                      foreach ($movies_data as $movie) { ?>
+                 
+                  if (count($products_data) > 0) {
+                      foreach ($products_data as $products) { ?>
                          <tr>
                           <td><?php echo $products['id']; ?></td>
                           <td><?php echo $products['products_name']; ?></td>
-                          <td><?php echo $products($movie['products_desc'], 0, 50) . '...'; ?></td>
-                          <td><?php echo $products['products_quality']; ?></td>
-                          <td><?php echo $products['products_rating']; ?></td>
+                          <td><?php echo $products($products['products_desc'], 0, 50) . '...'; ?></td>
                           <td><a href="delete_products.php?id=<?= $products['id'];?>" class="text-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a></td>
                         </tr>
                   <?php }
@@ -220,27 +215,26 @@
   </div>
 </div>
 
-  <!-- Add Movie Modal -->
-  <div class="modal fade" id="addMovieModal" tabindex="-1" aria-labelledby="addMovieModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addproductsModal" tabindex="-1" aria-labelledby="addproductsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addMovieModalLabel">Add New product</h5>
+          <h5 class="modal-title" id="addproductsModalLabel">Add New product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="addMovie.php" method="post">
+          <form action="addproducts.php" method="post">
             <div class="mb-3">
-              <label for="movie_name" class="form-label">Product Name</label>
-              <input type="text" class="form-control" id="movie_name" name="movie_name" required>
+              <label for="products_name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="products_name" name="products_name" required>
             </div>
             <div class="mb-3">
-              <label for="movie_desc" class="form-label">Movie Description</label>
-              <textarea class="form-control" id="movie_desc" name="movie_desc" rows="3" required></textarea>
+              <label for="products_desc" class="form-label">Product Description</label>
+              <textarea class="form-control" id="products_desc" name="products_desc" rows="3" required></textarea>
             </div>
             <div class="mb-3">
-              <label for="movie_quality" class="form-label">Movie Quality</label>
-              <select class="form-select" id="movie_quality" name="movie_quality" required>
+              <label for="products_quality" class="form-label">Product Quality</label>
+              <select class="form-select" id="products_quality" name="products_quality" required>
                 <option value="">Select Quality</option>
                 <option value="2D">2D</option>
                 <option value="3D">3D</option>
@@ -249,16 +243,16 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="movie_rating" class="form-label">Rating (1-10)</label>
-              <input type="number" class="form-control" id="movie_rating" name="movie_rating" min="1" max="10" required>
+              <label for="products_rating" class="form-label">Rating (1-10)</label>
+              <input type="number" class="form-control" id="products_rating" name="products_rating" min="1" max="10" required>
             </div>
             <div class="mb-3">
-              <label for="movie_image" class="form-label">Image Filename</label>
-              <input type="text" class="form-control" id="movie_image" name="movie_image" placeholder="example.jpg" required>
+              <label for="products_image" class="form-label">Image Filename</label>
+              <input type="text" class="form-control" id="products_image" name="products_image" placeholder="example.jpg" required>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="submit">Add Movie</button>
+              <button type="submit" class="btn btn-primary" name="submit">Add Product</button>
             </div>
           </form>
         </div>
