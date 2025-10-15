@@ -1,15 +1,13 @@
 <?php
-
-$user="root";
-$pass="";
-$server="localhost";
-$dbname="test2";
+$host = 'localhost';
+$dbname = 'test2';
+$username = 'root';
+$password = ''; // change if your MySQL has a password
 
 try {
-
-	$conn =new PDO("mysql:host=$server;dbname=$dbname",$user,$pass);
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-	echo "error: " . $e->getMessage();
+    die("Connection failed: " . $e->getMessage());
 }
-
 ?>

@@ -1,83 +1,113 @@
+<?php
+session_start();
+include_once('config.php');
+
+if(isset($_POST['login'])) {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if(empty($username) || empty($password)) {
+        $error_message = "Please fill in all fields.";
+    } else {
+        $sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($user && password_verify($password, $user['password'])) {
+            // Store session variables
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['is_admin'] = $user['is_admin'];
+
+            // Redirect based on role
+            if($user['is_admin'] === 'true') {
+                header("Location: dashboard.php");
+            } else {
+                header("Location: home.php");
+            }
+            exit;
+        } else {
+            $error_message = "Incorrect username or password.";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Login in</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-	<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-	<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-	<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-	<style>
-
-		html,
-	body {
-	  height: 100%;
-	}
-
-	body {
-	  display: flex;
-	  align-items: center;
-	  padding-top: 40px;
-	  padding-bottom: 40px;
-	  background-color: #f5f5f5;
-	}
-
-	.form-signin {
-	  width: 100%;
-	  max-width: 330px;
-	  padding: 15px;
-	  margin: auto;
-	}
-
-	.form-signin .checkbox {
-	  font-weight: 400;
-	}
-
-	.form-signin .form-floating:focus-within {
-	  z-index: 2;
-	}
-
-	.form-signin input[type="email"] {
-	  margin-bottom: -1px;
-	  border-bottom-right-radius: 0;
-	  border-bottom-left-radius: 0;
-	}
-
-	.form-signin input[type="password"] {
-	  margin-bottom: 10px;
-	  border-top-left-radius: 0;
-	  border-top-right-radius: 0;
-	}
-	</style>
+<meta charset="UTF-8">
+<title>Trimi's E-Commerce - Login</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+    background-color: #121212;
+    color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+}
+.container {
+    max-width: 400px;
+    margin-top: 100px;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+h2 {
+    color: #00d4ff;
+    margin-bottom: 25px;
+    text-align: center;
+}
+.form-control {
+    background-color: #2c2c2c;
+    color: #f5f5f5;
+    border: 1px solid #444;
+}
+.form-control:focus {
+    background-color: #2c2c2c;
+    color: #fff;
+    border-color: #00d4ff;
+    box-shadow: none;
+}
+.btn-primary {
+    background-color: #00d4ff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #008bbf;
+}
+.alert {
+    margin-top: 15px;
+}
+</style>
 </head>
-<body class="text-center">
+<body>
 
-<main class="form-signin">
-  <form action="loginLogic.php" method="post">
-    <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<div class="container">
+    <h2>Login</h2>
 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-      <label for="floatingInput">Username</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-      <label for="floatingPassword">Password</label>
-    </div>
+    <?php if(isset($error_message)) { ?>
+        <div class="alert alert-danger"><?php echo $error_message; ?></div>
+    <?php } ?>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Sign in</button>
-	<p>Already have an account:<a href="index.php" >Sign up</a> </p>
-  </form>
-</main>
+    <form method="POST" action="">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" name="login">Login</button>
+    </form>
+
+    <p class="mt-3 text-center">Don't have an account? <a href="register.php" style="color:#00d4ff;">Register</a></p>
+</div>
 
 </body>
 </html>
